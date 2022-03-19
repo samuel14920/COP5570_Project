@@ -47,12 +47,13 @@ def broadcast(msg):
 
 
 def handle_user(client):
+    client.send("Welcome to the chat!".encode())
     while True:
-        try:
-            message = client.recv(2048)
+        message = client.recv(2048)
+        if message:
             # print(decrypt(message))
             broadcast(message)
-        except:
+        else:
             username = usernames[connections.index(client)]
             connections.remove(client)
             client.close()
