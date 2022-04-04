@@ -1,6 +1,6 @@
 import socket
 import threading
-import os
+#import os
 
 
 # Connecting To Server
@@ -14,12 +14,12 @@ def decrypt(encryption, message):
     #same for decryptions
     return message
 
-def speak(message):
-    if ':' in message:
-        cmd = 'say ' + message.split(':')[0] + 'say' +  ' '.join(message.split(':')[1:])
-    else:
-        cmd = 'say ' + message
-    os.system(cmd) 
+#def speak(message):
+#    if ':' in message:
+#        cmd = 'say ' + message.split(':')[0] + 'say' +  ' '.join(message.split(':')[1:])
+#    else:
+#        cmd = 'say ' + message
+#    os.system(cmd)”“”
 
 def write():
     while True:
@@ -35,7 +35,7 @@ def receive():
             #message = decrypt(message)
             if message != 'USR':
                 print(message)
-                speak(message)
+                #speak(message)
             else:
                 # encrypt(username.encode('ascii')
                 client.send(username.encode())
