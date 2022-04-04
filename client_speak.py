@@ -2,10 +2,13 @@ import socket
 import threading
 #import os
 
+serverHost = '127.0.0.1'
+serverPort = 5555
+bytesReceive = 2048
 
-# Connecting To Server
+# Connecting To Server with IPv4 TCP - STREAM
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(('127.0.0.1', 55555))
+client.connect((serverHost, serverPort))
 
 def encrypt(encryption, message):
     #this will be a kind of switch statement for the different encryptions
@@ -31,7 +34,7 @@ def write():
 def receive():
     while True:
         try:
-            message = client.recv(2048).decode()
+            message = client.recv(bytesReceive).decode()
             #message = decrypt(message)
             if message != 'USR':
                 print(message)
