@@ -2,6 +2,7 @@ from pydoc import plain
 from turtle import right
 from blowfish_init_data import *
 import base64
+import numpy as np
 
 
 def f_function(n: int):
@@ -12,7 +13,7 @@ def f_function(n: int):
 def Encrypt(l, r):
     for i in range(0, 16):
         l = l ^ P[i]
-        right = f_function(l) ^ r
+        r = f_function(l) ^ r
         l, r = r, l
     l, r = r, l
     r = r ^ P[16]
@@ -24,7 +25,7 @@ def Decrypt(l, r):
         l = l^ P[i]
         r = f_function(l) ^ r
         l, r = r, l
-    left, r = r, l
+    l, r = r, l
     r = r ^ P[1]
     l = l ^ P[0]
 
@@ -58,12 +59,21 @@ key = [0x77AFA1C5, 0x20756060,
        0x85CBFE4E, 0x8AE88DD8, 0x7AAAF9B0, 0x4CF9AA7E,
        0x1948C25C, 0x02FB8A8C, 0x01C36AE4, 0xD6EBE1F9,
        0x90D4F869, 0xA65CDEA0, 0x3F09252D, 0xC208E69F]
-plaintext = "Hello World"
+
+    # plaintext_bytes = text2Binary(plaintext); console.log(plaintext_bytes);
+    # plaintext_bytes = plaintext_bytes.replace(/\s/g, ''); console.log(plaintext_bytes);
+    #
+    # //convert to int representation
+    # left_string = (plaintext_bytes.substring(0,32)); let left_rep = parseInt(left_string, 2);console.log(left_rep); setLeftInitial(left_rep);
+    # right_string = (plaintext_bytes.substring(32,64)); let right_rep = parseInt(right_string, 2);console.log(right_rep); setRightInitial(right_rep);
+
+
+plaintext = "abcdefgh"
 plaintext_bytes = plaintext.encode("ascii")
 print(plaintext_bytes)
-print(int.from_bytes(plaintext_bytes, "big"))
-left_text = int.from_bytes(plaintext_bytes, "big") & (2 ^ 32 - 1)
-right_text = int.from_bytes(plaintext_bytes, "big") << 32
+plaintext_int = (np.uint64(int.from_bytes(plaintext_bytes, "little")))
+left_text = (plaintext_int >> 32) << 32 #plaintext_string[0:32]#(int.from_bytes(plaintext_bytes, "big")# >> 32) << 32#& ((2 ^ 32) - 1)
+right_text = plaintext_int << 32
 print(left_text, right_text)
 Init_Subkeys(key)
 Encrypt(left_text, right_text)
