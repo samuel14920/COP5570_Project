@@ -1,11 +1,14 @@
 import socket
 import threading
-import os
+#import os
 
+serverHost = '127.0.0.1'
+serverPort = 5555
+bytesReceive = 2048
 
-# Connecting To Server
+# Connecting To Server with IPv4 TCP - STREAM
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(('127.0.0.1', 55555))
+client.connect((serverHost, serverPort))
 
 def encrypt(encryption, message):
     #this will be a kind of switch statement for the different encryptions
@@ -14,12 +17,12 @@ def decrypt(encryption, message):
     #same for decryptions
     return message
 
-def speak(message):
-    if ':' in message:
-        cmd = 'say ' + message.split(':')[0] + 'say' +  ' '.join(message.split(':')[1:])
-    else:
-        cmd = 'say ' + message
-    os.system(cmd) 
+#def speak(message):
+#    if ':' in message:
+#        cmd = 'say ' + message.split(':')[0] + 'say' +  ' '.join(message.split(':')[1:])
+#    else:
+#        cmd = 'say ' + message
+#    os.system(cmd)”“”
 
 def write():
     while True:
@@ -31,11 +34,11 @@ def write():
 def receive():
     while True:
         try:
-            message = client.recv(2048).decode()
+            message = client.recv(bytesReceive).decode()
             #message = decrypt(message)
             if message != 'USR':
                 print(message)
-                speak(message)
+                #speak(message)
             else:
                 # encrypt(username.encode('ascii')
                 client.send(username.encode())

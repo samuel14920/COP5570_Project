@@ -1,11 +1,14 @@
 import socket
 import threading
 
-host = '127.0.0.1'
-port = 55555
 
+serverHost = '127.0.0.1'
+serverPort = 5555
+bytesReceive = 2048
+
+# Server binding for serverHost and serverPort with IPv4 TCP - STREAM
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((host, port))
+server.bind((serverHost, serverPort))
 server.listen()
 usernames = []
 connections = []
@@ -24,7 +27,7 @@ def accept_users():
         conn.send('USR'.encode())
         connections.append(conn)
 
-        username = conn.recv(2048).decode()
+        username = conn.recv(bytesReceive).decode()
         usernames.append(username)
 
         print("Connected from address " + str(address) + " with username " + username + ".")
@@ -49,7 +52,7 @@ def broadcast(msg):
 def handle_user(client):
     client.send("Welcome to the chat!".encode())
     while True:
-        message = client.recv(2048)
+        message = client.recv(bytesReceive)
         if message:
             # print(decrypt(message))
             broadcast(message)
