@@ -139,11 +139,13 @@ def encryptMessage(encryption, mode, message, key=bytes(32), iv=bytes(16), Nonce
             bytes(getKeyOfLength(16))), set_mode)
         encryptor = cipher.encryptor()
         ct = encryptor.update(encoded_message) + encryptor.finalize()
-    return ct
+    return [ct, cipher]
 
 
-def decrypt(encryption, message):
+def decrypt(cipher_obj, ciphertext):
     # same for decryptions
+    decryptor = cipher_obj.decryptor()
+    message = decryptor.update(ciphertext) + decryptor.finalize()
     return message
 
 # def speak(message):
