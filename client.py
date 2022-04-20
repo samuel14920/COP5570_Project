@@ -36,13 +36,17 @@ bytesReceive = 2048
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((serverHost, serverPort))
 
+# encryptMessage(encryption, mode, message, key=bytes(16), iv=bytes(16), Nonce=bytes(32))
+# encryptMessage(encryption, mode, message, key=bytes(16))
+
 
 def write():
     while True:
         message = input('-->')
         message = username + ': ' + message
-        # message = encrypt(message)
-        client.send(message)
+        encrypted_message = encryptMessage(
+            "AES", "CBC", message, getKeyOfLength(16))
+        client.send(encrypted_message)
 
 
 def receive():
@@ -67,5 +71,10 @@ username = input("Select Username: ")
 receive_thread = threading.Thread(target=receive)
 write_thread = threading.Thread(target=write)
 
-receive_thread.start()
-write_thread.start()
+try:
+    receive_thread.start()
+    write_thread.start()
+except KeyboardInterrupt:
+    receive_thread.join()
+    write_thread.join()
+    exit(0)

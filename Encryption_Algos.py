@@ -5,6 +5,9 @@ import time
 from cryptography.hazmat.primitives.ciphers import (
     Cipher, algorithms, modes
 )
+from cryptography.hazmat.primitives import (
+    padding
+)
 
 
 def getIVOfLength(length):
@@ -14,13 +17,13 @@ def getIVOfLength(length):
              55,   3, 101,  43, 242,  85,  88,  86,  59]
     IV_8 = [50, 194, 253, 226, 253, 5, 43, 155]
     if length == 32:
-        return IV_32
+        return bytes(IV_32)
     elif length == 16:
-        return IV_16
+        return bytes(IV_16)
     elif length == 8:
-        return IV_8
+        return bytes(IV_8)
     else:
-        return []
+        return bytes([])
 
 
 def getNonceOfLength(length):
@@ -29,11 +32,11 @@ def getNonceOfLength(length):
     Nonce_16 = [108,  43,  46, 150,  28, 161, 231,
                 101, 228,   9,  90,  35,  87,  97,  67, 185]
     if length == 32:
-        return Nonce_32
+        return bytes(Nonce_32)
     elif length == 16:
-        return Nonce_16
+        return bytes(Nonce_16)
     else:
-        return []
+        return bytes([])
 
 
 def getKeyOfLength(length):
@@ -42,11 +45,11 @@ def getKeyOfLength(length):
     key_16 = [120, 31, 182, 66, 209, 146, 220,
               175, 238, 56, 52, 145, 154, 31, 146, 171]
     if length == 32:
-        return key_32
+        return bytes(key_32)
     elif length == 16:
-        return key_16
+        return bytes(key_16)
     else:
-        return []
+        return bytes([])
 
 
 def getCipherInfo(cipher):
@@ -54,19 +57,19 @@ def getCipherInfo(cipher):
     # 128 bit keys were valid for all 5 of these keys, so I've chosen to use that number for consistency
     answer = {}
     if cipher == "AES":
-        answer['block_size'] = 128
-        answer['key_size'] = 128
+        answer['block_size'] = 16
+        answer['key_size'] = 16
     if cipher == "TripleDES":
-        answer['block_size'] = 64
-        answer['key_size'] = 128
+        answer['block_size'] = 8
+        answer['key_size'] = 16
     if cipher == "Blowfish":
-        answer['block_size'] = 64
-        answer['key_size'] = 128
+        answer['block_size'] = 8
+        answer['key_size'] = 16
     if cipher == "SM4":
-        answer['block_size'] = 128
-        answer['key_size'] = 128
+        answer['block_size'] = 16
+        answer['key_size'] = 16
     if cipher == "ARC4":
-        answer['key_size'] = 128
+        answer['key_size'] = 16
     return answer
 
 
@@ -75,7 +78,9 @@ def setEncryptionMode(mode, cipher, block_size=8):
     if mode == "ECB":
         mode_object = modes.ECB()
     elif mode == "CBC":
+        # print(info.get('block_size'))
         mode_object = modes.CBC(getIVOfLength(info.get('block_size')))
+        # print(mode_object)
     elif mode == "OFB":
         mode_object = modes.OFB(getIVOfLength(info.get('block_size')))
     elif mode == "CFB":
@@ -86,41 +91,52 @@ def setEncryptionMode(mode, cipher, block_size=8):
     return mode_object
 
 
-def encryptMessage(encryption, mode, message, key=bytes(32), iv=bytes(16), Nonce=bytes(32)):
+def encryptMessage(encryption, mode, message, key=bytes(16)):
     # this will be a kind of switch statement for the different encryptions
-    info = getCipherInfo(cipher)
+    info = getCipherInfo(encryption)
     set_mode = setEncryptionMode(mode, encryption, info.get('block_size'))
+    # print(info.get('block_size'))
+    # print(message)
     encoded_message = message.encode()
-    ct = encoded_message
-    if encryption == "AES":
-        cipher = Cipher(algorithms.AES(bytes(getKeyOfLength(16))), set_mode)
-        encryptor = cipher.encryptor()
-        ct = encryptor.update(encoded_message) + encryptor.finalize()
-    elif encryption == "TripleDES":
+    if encryption == "TripleDES":
         cipher = Cipher(algorithms.TripleDES(
-            bytes(getKeyOfLength(16))), set_mode)
-        encryptor = cipher.encryptor()
-        ct = encryptor.update(encoded_message) + encryptor.finalize()
+            key), set_mode)
     elif encryption == "Blowfish":
-        cipher = Cipher(algorithms.Blowfish(
-            bytes(getKeyOfLength(16))), set_mode)
-        encryptor = cipher.encryptor()
-        ct = encryptor.update(encoded_message) + encryptor.finalize()
+        cipher = Cipher(algorithms.Blowfish(key), set_mode)
     elif encryption == "SM4":
-        cipher = Cipher(algorithms.SM4(
-            bytes(getKeyOfLength(16))), set_mode)
-        encryptor = cipher.encryptor()
-        ct = encryptor.update(encoded_message) + encryptor.finalize()
+        cipher = Cipher(algorithms.SM4(key), set_mode)
     elif encryption == "ARC4":
-        cipher = Cipher(algorithms.ARC4(
-            bytes(getKeyOfLength(16))), set_mode)
-        encryptor = cipher.encryptor()
-        ct = encryptor.update(encoded_message) + encryptor.finalize()
-    return [ct, cipher]
+        cipher = Cipher(algorithms.ARC4(key), set_mode)
+    else:  # encryption == "AES"
+        cipher = Cipher(algorithms.AES(key), set_mode)
+    encryptor = cipher.encryptor()
+    # print(type(encoded_message))
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(encoded_message)
+    padded_data += padder.finalize()
+    ct = encryptor.update(padded_data) + encryptor.finalize()
+
+    return ct
 
 
-def decrypt(cipher_obj, ciphertext):
+def decryptMessage(ciphertext, encryption, mode, key=bytes(16)):
     # same for decryptions
-    decryptor = cipher_obj.decryptor()
-    message = decryptor.update(ciphertext) + decryptor.finalize()
+    info = getCipherInfo(encryption)
+    set_mode = setEncryptionMode(mode, encryption, info.get('block_size'))
+    if encryption == "TripleDES":
+        cipher = Cipher(algorithms.TripleDES(
+            key), set_mode)
+    elif encryption == "Blowfish":
+        cipher = Cipher(algorithms.Blowfish(key), set_mode)
+    elif encryption == "SM4":
+        cipher = Cipher(algorithms.SM4(key), set_mode)
+    elif encryption == "ARC4":
+        cipher = Cipher(algorithms.ARC4(key), set_mode)
+    else:  # encryption == "AES"
+        cipher = Cipher(algorithms.AES(key), set_mode)
+    decryptor = cipher.decryptor()
+    padded_data = decryptor.update(ciphertext) + decryptor.finalize()
+    unpadder = padding.PKCS7(128).unpadder()
+    data = unpadder.update(padded_data)
+    message = data + unpadder.finalize()
     return message

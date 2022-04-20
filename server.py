@@ -83,6 +83,9 @@ def handle_user(client):
     # client.send("Welcome to the chat!".encode())
     while True:
         message = client.recv(bytesReceive)
+        #message = message.decode()
+        #decryptMessage(ciphertext, encryption, mode, key=bytes(16))
+        message = decryptMessage(message, "AES", "CBC", getKeyOfLength(16))
         if message:
             # print(decrypt(message))
             broadcast(message)
