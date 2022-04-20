@@ -39,19 +39,33 @@ startEncryption, endEncryption = 0, 0
 # encryptMessage(encryption, mode, message, key=bytes(16), iv=bytes(16), Nonce=bytes(32))
 # encryptMessage(encryption, mode, message, key=bytes(16))
 
+client.settimeout(0.5)
+
 
 def write():
     while True:
-        message = input('-->')
-        message = username + ': ' + message
-        outstandingMessages.add(message)
-        startEncryption = time.perf_counter_ns()
-        for i in range(1000):
+        try:
+            message = input('-->')
+
+            # if message.endswith(".txt")
+
+            message = username + ': ' + message
+            outstandingMessages.add(message)
+            startEncryption = time.perf_counter_ns()
+            # for i in range(1000):
+            #     encrypted_message = encryptMessage(
+            #         "AES", "CBC", message, getKeyOfLength(16))
             encrypted_message = encryptMessage(
                 "AES", "CBC", message, getKeyOfLength(16))
-        endEncryption = time.perf_counter_ns()
-        print(endEncryption - startEncryption)
-        client.send(encrypted_message)
+            endEncryption = time.perf_counter_ns()
+            print(endEncryption - startEncryption)
+            client.send(encrypted_message)
+        except socket.timeout:
+            pass
+        except KeyboardInterrupt:
+            print("Connection Error")
+            client.close()
+            break
 
 
 def receive():
@@ -69,7 +83,9 @@ def receive():
             else:
                 # encrypt(username.encode('ascii')
                 client.send(username.encode())
-        except:
+        except socket.timeout:
+            pass
+        except KeyboardInterrupt:
             print("Connection Error")
             client.close()
             break

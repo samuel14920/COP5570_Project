@@ -1,5 +1,6 @@
 import socket
 import threading
+# from signal import signal, SIGINT
 from Encryption_Algos import *
 # KEYS
 # key_32 = [247, 243, 40, 10, 220,  77, 213,  52,  44, 151,  50, 121, 236,  88,  68,  68,
@@ -32,39 +33,38 @@ server.listen()
 usernames = []
 connections = []
 
-
-def encrypt(encryption, message):
-    # this will be a kind of switch statement for the different encryptions
-    return message
-
-
-def decrypt(encryption, message):
-    # same for decryptions
-    return message
+# close socket ctrl-c
+server.settimeout(0.5)
 
 
 def accept_users():
     try:
+        print("Server Listening...")
         while True:
-            print("Server Listening...")
-            conn, address = server.accept()
+            try:
+                conn, address = server.accept()
+                conn.send('USR'.encode())
+                connections.append(conn)
 
-            conn.send('USR'.encode())
-            connections.append(conn)
+                username = conn.recv(bytesReceive).decode()
+                usernames.append(username)
 
-            username = conn.recv(bytesReceive).decode()
-            usernames.append(username)
+                print("Connected from address " + str(address) +
+                      " with username " + username + ".")
 
-            print("Connected from address " + str(address) +
-                  " with username " + username + ".")
+                broadcast((username + " joined the chat.\n").encode())
+                conn.send('Welcome to the chat room!'.encode())
 
-            broadcast((username + " joined the chat.").encode())
-            conn.send('Welcome to the chat room!'.encode())
-
-            thread = threading.Thread(target=handle_user, args=(conn,))
-            thread.start()
+                thread = threading.Thread(target=handle_user, args=(conn,))
+                thread.start()
+            except socket.timeout:
+                pass
+            except KeyboardInterrupt:
+                pass
     except KeyboardInterrupt:
         print('interrupted!')
+        for conn in connections:
+            conn.close()
         server.close()
         exit(0)
 
