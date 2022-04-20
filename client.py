@@ -29,13 +29,13 @@ from Encryption_Algos import *
 serverHost = '127.0.0.1'
 serverPort = 5555
 bytesReceive = 2048
-
+outstandingMessages = set()
 # START OF ACTUAL PROGRAM
 
 # Connecting To Server with IPv4 TCP - STREAM
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((serverHost, serverPort))
-
+startEncryption, endEncryption = 0, 0
 # encryptMessage(encryption, mode, message, key=bytes(16), iv=bytes(16), Nonce=bytes(32))
 # encryptMessage(encryption, mode, message, key=bytes(16))
 
@@ -44,8 +44,13 @@ def write():
     while True:
         message = input('-->')
         message = username + ': ' + message
-        encrypted_message = encryptMessage(
-            "AES", "CBC", message, getKeyOfLength(16))
+        outstandingMessages.add(message)
+        startEncryption = time.perf_counter_ns()
+        for i in range(1000):
+            encrypted_message = encryptMessage(
+                "AES", "CBC", message, getKeyOfLength(16))
+        endEncryption = time.perf_counter_ns()
+        print(endEncryption - startEncryption)
         client.send(encrypted_message)
 
 
@@ -54,6 +59,10 @@ def receive():
         try:
             message = client.recv(bytesReceive).decode()
             # message = decrypt(message)
+            if message in outstandingMessages:
+                # endEncryption = time.time_ns()
+                outstandingMessages.remove(message)
+                # print(endEncryption - startEncryption)
             if message != 'USR':
                 print(message)
                 # speak(message)
