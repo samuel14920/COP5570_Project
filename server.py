@@ -83,19 +83,28 @@ def handle_user(client):
     # client.send("Welcome to the chat!".encode())
     while True:
         message = client.recv(bytesReceive)
-        #message = message.decode()
-        #decryptMessage(ciphertext, encryption, mode, key=bytes(16))
-        message = decryptMessage(message, "AES", "CBC", getKeyOfLength(16))
-        if message:
-            # print(decrypt(message))
-            broadcast(message)
+        message = message.decode("utf-8")
+        if message.endswith(".txt"):
+            new_file = open('newfile.txt', mode='w', encoding="utf8")
+            l = client.recv(bytesReceive)
+            while (l):
+                l = l.decode("utf-8", 'ignore')
+                new_file.write(l)
+                l = client.recv(bytesReceive)
+            new_file.close()
         else:
-            username = usernames[connections.index(client)]
-            connections.remove(client)
-            client.close()
-            broadcast((username + ' has left the chat,').encode())
-            usernames.remove(username)
-            break
+            #decryptMessage(ciphertext, encryption, mode, key=bytes(16))
+            message = decryptMessage(message, "AES", "CBC", getKeyOfLength(16))
+            if message:
+                # print(decrypt(message))
+                broadcast(message)
+            else:
+                username = usernames[connections.index(client)]
+                connections.remove(client)
+                client.close()
+                broadcast((username + ' has left the chat,').encode())
+                usernames.remove(username)
+                break
 
 
 accept_users()

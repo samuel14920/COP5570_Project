@@ -47,10 +47,17 @@ def write():
         try:
             message = input('-->')
 
-            # if message.endswith(".txt")
-
-            message = username + ': ' + message
-            outstandingMessages.add(message)
+            if message.endswith(".txt"):
+                message_file = open(message, encoding="utf8")
+                client.send(message.encode("utf-8"))
+                l = message_file.read(bytesReceive)
+                while (l):
+                    client.send(l.encode("utf-8"))
+                    l = message_file.read(bytesReceive)
+                message_file.close()
+            else:
+                message = username + ': ' + message
+                outstandingMessages.add(message)
             startEncryption = time.perf_counter_ns()
             # for i in range(1000):
             #     encrypted_message = encryptMessage(
