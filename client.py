@@ -3,6 +3,7 @@ import threading
 import os
 import time
 import pdb
+from tracemalloc import start
 from cryptography.hazmat.primitives.ciphers import (
     Cipher, algorithms, modes
 )
@@ -68,10 +69,12 @@ def write():
                 message = username + ': ' + message
                 outstandingMessages.add(message)
                 startEncryption = time.perf_counter_ns()
+                print(startEncryption)
                 encrypted_message = encryptMessage(
                     "SM4", "CBC", message, getKeyOfLength(16))
-                print(encrypted_message)
+                # print(encrypted_message)
                 endEncryption = time.perf_counter_ns()
+                print(endEncryption)
                 print(endEncryption - startEncryption)
                 client.send(encrypted_message)
         except socket.timeout:
