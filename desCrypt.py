@@ -112,7 +112,7 @@ SBoxes = [
 shiftLeftCount = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1]
 
 def moveRight1Bit(key, bit):
-	return ( (key & 1) << (bit -1) ) | (key >> 1)
+	return ( (key & 1) << (bit-1) ) | (key >> 1)
 
 def moveLeft1Bit(key, bit):
 	return ( (key << 1) & ( (1 << bit) - 1) ) | ( key >> (bit-1))
@@ -126,14 +126,14 @@ def subBox(num, sub):
 def permutation(num, perm, bits):
 	#Return value
 	temp = 0
-	for i in P:
-		bit = ( num >> (bits - perm) ) & 1 #Find bit by position
+	for i in perm:
+		bit = ( num >> (bits - i) ) & 1 #Find bit by position
 		temp = ( temp << 1) | bit          #Append to temp for return
 	return temp
 	
 def desFunk(num, key, encryptDECRYPT=False):
 	#First permutation 
-	num   = permitation( num, IP, bits )
+	num   = permutation( num, IP, QWORD )
 	#rightSide is lower 32 bits
 	rightSide = ( num & 0xFFFFFFFF )
 	#leftSide is upper 32 bits
@@ -185,18 +185,18 @@ def desCrypt (textString, key, ENCRYPTdecrypt=False):
 		temp = 0
 		#indexPos is which block are we processing
 		indexPos = blockNum << 3
-		for i in range(blockSize):
-			temp = ( temp << blockSize )
+		for i in range(BYTE):
+			temp = ( temp << BYTE )
 			if indexPos + 1 < len(textString):   #Checking for padding and appending
 				temp = temp | ord(textString[ indexPos+i ]) #Convert to integer value and append
 		
 		desTemp = desFunk(temp, key, ENCRYPTdecrypt)
 		
 		tempChar = ""
-		for i in range(blockSize):
+		for i in range(BYTE):
 			currentChar = desTemp & 0xFF #Process lower 8 bits
 			tempChar = chr(letter) + tempChar 
-			desTemp = desTemp >> blockSize  #Next char, shift Right 
+			desTemp = desTemp >> BYTE  #Next char, shift Right 
 
 		tempReturn += tempChar #Then add block to return string
 

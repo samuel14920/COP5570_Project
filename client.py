@@ -32,6 +32,9 @@ serverHost = '127.0.0.1'
 serverPort = 5555
 bytesReceive = 3145728
 outstandingMessages = set()
+currentCryptFunk = "AES"  # "AES" "TripleDES" "Blowfish" "SM4" "ARC4" "DES1"
+currentCryptMode = "ECB"  # "ECB" "CBC" "OFB" "CFB" "CTR"  NA
+currentKeyLength = getKeyOfLength(16)  # 32  16  Need 8
 # START OF ACTUAL PROGRAM
 
 # Connecting To Server with IPv4 TCP - STREAM
