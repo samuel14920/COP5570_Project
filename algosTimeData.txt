@@ -1,0 +1,125 @@
+TripleDES-CBC-sam: hello world-176300
+TripleDES-CBC-sam: hello world-160800
+TripleDES-CBC-sam: hello world-178300
+TripleDES-CBC-sam: hello world-194900
+TripleDES-CBC-sam: hello world-121400
+TripleDES-CBC-Frankenstein.txt-18498000
+TripleDES-CBC-Frankenstein.txt-18217900
+TripleDES-CBC-Frankenstein.txt-18500500
+TripleDES-CBC-Frankenstein.txt-18451600
+TripleDES-CBC-Frankenstein.txt-19714900
+TripleDES-CBC-Dickens.txt-30246400
+TripleDES-CBC-Dickens.txt-33309200
+TripleDES-CBC-Dickens.txt-30310600
+TripleDES-CBC-Dickens.txt-30411000
+TripleDES-CBC-Dickens.txt-30807300
+TripleDES-CBC-Joyce.txt-55482500
+TripleDES-CBC-Joyce.txt-57994200
+TripleDES-CBC-Joyce.txt-55102000
+TripleDES-CBC-Joyce.txt-56417000
+TripleDES-CBC-Joyce.txt-55356100
+TripleDES-CBC-Dumas.txt-95201800
+TripleDES-CBC-Dumas.txt-95609900
+TripleDES-CBC-Dumas.txt-94279000
+TripleDES-CBC-Dumas.txt-95582700
+TripleDES-CBC-Dumas.txt-95163000
+ARC4-sam: hello world-197500
+ARC4-sam: hello world-140000
+ARC4-sam: hello world-152500
+ARC4-sam: hello world-162200
+ARC4-sam: hello world-164200
+ARC4-Frankenstein.txt-7546000
+ARC4-Frankenstein.txt-7092200
+ARC4-Frankenstein.txt-7622100
+ARC4-Frankenstein.txt-6809500
+ARC4-Frankenstein.txt-6459200
+ARC4-Dickens.txt-14048000
+ARC4-Dickens.txt-10663300
+ARC4-Dickens.txt-10612100
+ARC4-Dickens.txt-11507500
+ARC4-Dickens.txt-10986200
+ARC4-Joyce.txt-17067300
+ARC4-Joyce.txt-19502100
+ARC4-Joyce.txt-17488000
+ARC4-Joyce.txt-17131500
+ARC4-Joyce.txt-18687000
+ARC4-Dumas.txt-27867400
+ARC4-Dumas.txt-28456300
+ARC4-Dumas.txt-27676700
+ARC4-Dumas.txt-28919900
+ARC4-Dumas.txt-28041200
+Blowfish-CBC-sam: hello world-190800
+Blowfish-CBC-sam: hello world-188600
+Blowfish-CBC-sam: hello world-233700
+Blowfish-CBC-sam: hello world-250600
+Blowfish-CBC-sam: hello world-210700
+Blowfish-CBC-Frankenstein.txt-9562000
+Blowfish-CBC-Frankenstein.txt-9284100
+Blowfish-CBC-Frankenstein.txt-10002400
+Blowfish-CBC-Frankenstein.txt-9455300
+Blowfish-CBC-Frankenstein.txt-9378200
+Blowfish-CBC-Dickens.txt-14987600
+Blowfish-CBC-Dickens.txt-14435800
+Blowfish-CBC-Dickens.txt-14635000
+Blowfish-CBC-Dickens.txt-15097900
+Blowfish-CBC-Dickens.txt-14964400
+Blowfish-CBC-Joyce.txt-24456300
+Blowfish-CBC-Joyce.txt-33725100
+Blowfish-CBC-Joyce.txt-24842000
+Blowfish-CBC-Joyce.txt-24900900
+Blowfish-CBC-Joyce.txt-24308400
+Blowfish-CBC-Dumas.txt-40301200
+Blowfish-CBC-Dumas.txt-41812900
+Blowfish-CBC-Dumas.txt-40578600
+Blowfish-CBC-Dumas.txt-42412800
+Blowfish-CBC-Dumas.txt-41806600
+SM4-CBC-sam: hello world-175700
+SM4-CBC-sam: hello world-156600
+SM4-CBC-sam: hello world-194600
+SM4-CBC-sam: hello world-172200
+SM4-CBC-sam: hello world-153800
+SM4-CBC-Frankenstein.txt-10757300
+SM4-CBC-Frankenstein.txt-10203200
+SM4-CBC-Frankenstein.txt-10084700
+SM4-CBC-Frankenstein.txt-10078200
+SM4-CBC-Frankenstein.txt-10653700
+SM4-CBC-Dickens.txt-16719700
+SM4-CBC-Dickens.txt-16775100
+SM4-CBC-Dickens.txt-16777600
+SM4-CBC-Dickens.txt-16531500
+SM4-CBC-Dickens.txt-16702100
+SM4-CBC-Joyce.txt-28207000
+SM4-CBC-Joyce.txt-28115900
+SM4-CBC-Joyce.txt-28628000
+SM4-CBC-Joyce.txt-29371500
+SM4-CBC-Joyce.txt-29915500
+SM4-CBC-Dumas.txt-46947000
+SM4-CBC-Dumas.txt-47834600
+SM4-CBC-Dumas.txt-45772600
+SM4-CBC-Dumas.txt-47835000
+SM4-CBC-Dumas.txt-46034400
+AES-CBC-sam: hello world-278000
+AES-CBC-sam: hello world-133600
+AES-CBC-sam: hello world-144600
+AES-CBC-sam: hello world-147100
+AES-CBC-sam: hello world-214900
+AES-CBC-Frankenstein.txt-7137200
+AES-CBC-Frankenstein.txt-6278200
+AES-CBC-Frankenstein.txt-6144200
+AES-CBC-Frankenstein.txt-6940200
+AES-CBC-Frankenstein.txt-7043800
+AES-CBC-Dickens.txt-10497100
+AES-CBC-Dickens.txt-9648800
+AES-CBC-Dickens.txt-9684300
+AES-CBC-Dickens.txt-10453000
+AES-CBC-Dickens.txt-10292900
+AES-CBC-Joyce.txt-15668200
+AES-CBC-Joyce.txt-15396000
+AES-CBC-Joyce.txt-16786300
+AES-CBC-Joyce.txt-16314800
+AES-CBC-Joyce.txt-17143400
+AES-CBC-Dumas.txt-26445400
+AES-CBC-Dumas.txt-26730700
+AES-CBC-Dumas.txt-25961000
+AES-CBC-Dumas.txt-26247100
+AES-CBC-Dumas.txt-27721000

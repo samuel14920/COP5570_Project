@@ -92,14 +92,14 @@ def handle_user(client):
             # print(l)
             # while (l):
             decrypted_message = decryptMessage(
-                l, "SM4", "CBC", getKeyOfLength(16))
+                l, "AES", "CBC", getKeyOfLength(16))
             # l = l.decode("utf-8", 'ignore')
             new_file.write(decrypted_message.decode())
             new_file.close()
         else:
             #decryptMessage(ciphertext, encryption, mode, key=bytes(16))
             message = decryptMessage(
-                dupe_message_bytes, "SM4", "CBC", getKeyOfLength(16))
+                dupe_message_bytes, "AES", "CBC", getKeyOfLength(16))
             if message:
                 # print(decrypt(message))
                 broadcast(message)

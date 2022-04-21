@@ -106,7 +106,7 @@ def encryptMessage(encryption, mode, message, key=bytes(16)):
     elif encryption == "SM4":
         cipher = Cipher(algorithms.SM4(key), set_mode)
     elif encryption == "ARC4":
-        cipher = Cipher(algorithms.ARC4(key), set_mode)
+        cipher = Cipher(algorithms.ARC4(key), mode=None)
     else:  # encryption == "AES"
         cipher = Cipher(algorithms.AES(key), set_mode)
     encryptor = cipher.encryptor()
@@ -132,7 +132,7 @@ def decryptMessage(ciphertext, encryption, mode, key=bytes(16)):
     elif encryption == "SM4":
         cipher = Cipher(algorithms.SM4(key), set_mode)
     elif encryption == "ARC4":
-        cipher = Cipher(algorithms.ARC4(key), set_mode)
+        cipher = Cipher(algorithms.ARC4(key),  mode=None)
     else:  # encryption == "AES"
         cipher = Cipher(algorithms.AES(key), set_mode)
     decryptor = cipher.decryptor()

@@ -1,0 +1,150 @@
+ARC4-sam: hello world-197500
+ARC4-sam: hello world-140000
+ARC4-sam: hello world-152500
+ARC4-sam: hello world-162200
+ARC4-sam: hello world-164200
+ARC4-Frankenstein.txt-7546000
+ARC4-Frankenstein.txt-7092200
+ARC4-Frankenstein.txt-7622100
+ARC4-Frankenstein.txt-6809500
+ARC4-Frankenstein.txt-6459200
+ARC4-Dickens.txt-14048000
+ARC4-Dickens.txt-10663300
+ARC4-Dickens.txt-10612100
+ARC4-Dickens.txt-11507500
+ARC4-Dickens.txt-10986200
+ARC4-Joyce.txt-17067300
+ARC4-Joyce.txt-19502100
+ARC4-Joyce.txt-17488000
+ARC4-Joyce.txt-17131500
+ARC4-Joyce.txt-18687000
+ARC4-Dumas.txt-27867400
+ARC4-Dumas.txt-28456300
+ARC4-Dumas.txt-27676700
+ARC4-Dumas.txt-28919900
+ARC4-Dumas.txt-28041200
+AES-CBC-sam: hello world-144100
+AES-CBC-sam: hello world-164300
+AES-CBC-sam: hello world-121300
+AES-CBC-sam: hello world-166900
+AES-CBC-sam: hello world-206600
+AES-CBC-Frankenstein.txt-6840900
+AES-CBC-Frankenstein.txt-6763100
+AES-CBC-Frankenstein.txt-6618800
+AES-CBC-Frankenstein.txt-6678900
+AES-CBC-Frankenstein.txt-6909800
+AES-CBC-Dickens.txt-10350900
+AES-CBC-Dickens.txt-10116800
+AES-CBC-Dickens.txt-9927200
+AES-CBC-Dickens.txt-9731300
+AES-CBC-Dickens.txt-10063100
+AES-CBC-Joyce.txt-15564100
+AES-CBC-Joyce.txt-14805300
+AES-CBC-Joyce.txt-15499500
+AES-CBC-Joyce.txt-15345200
+AES-CBC-Joyce.txt-15486000
+AES-CBC-Dumas.txt-25655800
+AES-CBC-Dumas.txt-24581700
+AES-CBC-Dumas.txt-25294600
+AES-CBC-Dumas.txt-26599100
+AES-CBC-Dumas.txt-25220500
+AES-CTR-sam: hello world-145800
+AES-CTR-sam: hello world-192500
+AES-CTR-sam: hello world-121300
+AES-CTR-sam: hello world-170000
+AES-CTR-sam: hello world-213300
+AES-CTR-Frankenstein.txt-6260300
+AES-CTR-Frankenstein.txt-6083600
+AES-CTR-Frankenstein.txt-6852500
+AES-CTR-Frankenstein.txt-6529200
+AES-CTR-Frankenstein.txt-6727100
+AES-CTR-Dickens.txt-9734500
+AES-CTR-Dickens.txt-9957000
+AES-CTR-Dickens.txt-9812700
+AES-CTR-Dickens.txt-9842600
+AES-CTR-Dickens.txt-10089600
+AES-CTR-Joyce.txt-15183700
+AES-CTR-Joyce.txt-15888800
+AES-CTR-Joyce.txt-14736000
+AES-CTR-Joyce.txt-14801300
+AES-CTR-Joyce.txt-15008600
+AES-CTR-Dumas.txt-23771600
+AES-CTR-Dumas.txt-25025500
+AES-CTR-Dumas.txt-24548900
+AES-CTR-Dumas.txt-24203900
+AES-CTR-Dumas.txt-24188900
+AES-ECB-sam: hello world-153700
+AES-ECB-sam: hello world-242900
+AES-ECB-sam: hello world-136900
+AES-ECB-sam: hello world-135900
+AES-ECB-sam: hello world-180300
+AES-ECB-Frankenstein.txt-6651800
+AES-ECB-Frankenstein.txt-6576400
+AES-ECB-Frankenstein.txt-6392500
+AES-ECB-Frankenstein.txt-6849400
+AES-ECB-Frankenstein.txt-6230100
+AES-ECB-Dickens.txt-9864800
+AES-ECB-Dickens.txt-10688300
+AES-ECB-Dickens.txt-11201000
+AES-ECB-Dickens.txt-12258800
+AES-ECB-Dickens.txt-10499700
+AES-ECB-Joyce.txt-14820900
+AES-ECB-Joyce.txt-14715000
+AES-ECB-Joyce.txt-15560300
+AES-ECB-Joyce.txt-15063700
+AES-ECB-Joyce.txt-14828600
+AES-ECB-Dumas.txt-24385500
+AES-ECB-Dumas.txt-23997900
+AES-ECB-Dumas.txt-24398900
+AES-ECB-Dumas.txt-25204700
+AES-ECB-Dumas.txt-25630500
+AES-OFB-sam: hello world-167300
+AES-OFB-sam: hello world-152300
+AES-OFB-sam: hello world-170200
+AES-OFB-sam: hello world-122300
+AES-OFB-sam: hello world-155900
+AES-OFB-Frankenstein.txt-6876500
+AES-OFB-Frankenstein.txt-7149600
+AES-OFB-Frankenstein.txt-6603500
+AES-OFB-Frankenstein.txt-6432000
+AES-OFB-Frankenstein.txt-6456600
+AES-OFB-Dickens.txt-10285600
+AES-OFB-Dickens.txt-9780100
+AES-OFB-Dickens.txt-9825700
+AES-OFB-Dickens.txt-10229600
+AES-OFB-Dickens.txt-10193700
+AES-OFB-Joyce.txt-15961100
+AES-OFB-Joyce.txt-15940300
+AES-OFB-Joyce.txt-15884000
+AES-OFB-Joyce.txt-15712200
+AES-OFB-Joyce.txt-16057900
+AES-OFB-Dumas.txt-26472100
+AES-OFB-Dumas.txt-26138900
+AES-OFB-Dumas.txt-28010600
+AES-OFB-Dumas.txt-25495100
+AES-OFB-Dumas.txt-26067200
+AES-CFB-sam: hello world-161300
+AES-CFB-sam: hello world-189400
+AES-CFB-sam: hello world-185500
+AES-CFB-sam: hello world-138400
+AES-CFB-sam: hello world-160100
+AES-CFB-Frankenstein.txt-6995100
+AES-CFB-Frankenstein.txt-7009000
+AES-CFB-Frankenstein.txt-7046500
+AES-CFB-Frankenstein.txt-6845200
+AES-CFB-Frankenstein.txt-7247800
+AES-CFB-Dickens.txt-10189900
+AES-CFB-Dickens.txt-9324400
+AES-CFB-Dickens.txt-10509100
+AES-CFB-Dickens.txt-10348800
+AES-CFB-Dickens.txt-10255300
+AES-CFB-Joyce.txt-16195500
+AES-CFB-Joyce.txt-15627500
+AES-CFB-Joyce.txt-16001500
+AES-CFB-Joyce.txt-16132600
+AES-CFB-Joyce.txt-15349400
+AES-CFB-Dumas.txt-26571100
+AES-CFB-Dumas.txt-25940300
+AES-CFB-Dumas.txt-25537600
+AES-CFB-Dumas.txt-25679500
+AES-CFB-Dumas.txt-26603900

@@ -45,6 +45,7 @@ client.settimeout(0.5)
 
 
 def write():
+    data_file = open('timeData.txt', mode='a', encoding="utf8")
     while True:
         try:
             message = input('-->')
@@ -58,24 +59,30 @@ def write():
 
                 while (l):
                     encrypted_message = encryptMessage(
-                        "SM4", "CBC", l, getKeyOfLength(16))
+                        "AES", "CBC", l, getKeyOfLength(16))
                     # print(encrypted_message, "hello")
                     client.send(encrypted_message)
                     l = message_file.read(bytesReceive)
                 message_file.close()
                 endEncryption = time.perf_counter_ns()
-                print(endEncryption - startEncryption)
+                runtime = endEncryption - startEncryption
+                data_file.write("AES-" + "CBC-" + message +
+                                "-" + str(runtime) + "\n")
+                print(runtime)
             else:
                 message = username + ': ' + message
                 outstandingMessages.add(message)
                 startEncryption = time.perf_counter_ns()
                 # print(startEncryption)
                 encrypted_message = encryptMessage(
-                    "SM4", "CBC", message, getKeyOfLength(16))
+                    "AES", "CBC", message, getKeyOfLength(16))
                 # print(encrypted_message)
                 endEncryption = time.perf_counter_ns()
                 # print(endEncryption)
-                print(endEncryption - startEncryption)
+                runtime = endEncryption - startEncryption
+                data_file.write("AES-" + "CBC-" + message +
+                                "-" + str(runtime) + "\n")
+                print(runtime)
                 client.send(encrypted_message)
         except socket.timeout:
             pass
