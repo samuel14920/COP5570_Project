@@ -1,5 +1,6 @@
 import socket
 import threading
+import copy
 # from signal import signal, SIGINT
 from Encryption_Algos import *
 # KEYS
@@ -83,18 +84,23 @@ def handle_user(client):
     # client.send("Welcome to the chat!".encode())
     while True:
         message = client.recv(bytesReceive)
-        message = message.decode("utf-8")
+        dupe_message_bytes = copy.deepcopy(message)
+        message = message.decode("utf-8", errors='replace')
         if message.endswith(".txt"):
             new_file = open('newfile.txt', mode='w', encoding="utf8")
             l = client.recv(bytesReceive)
+            # print(l)
             while (l):
-                l = l.decode("utf-8", 'ignore')
-                new_file.write(l)
+                decrypted_message = decryptMessage(
+                    l, "SM4", "CBC", getKeyOfLength(16))
+                # l = l.decode("utf-8", 'ignore')
+                new_file.write(decrypted_message)
                 l = client.recv(bytesReceive)
             new_file.close()
         else:
             #decryptMessage(ciphertext, encryption, mode, key=bytes(16))
-            message = decryptMessage(message, "AES", "CBC", getKeyOfLength(16))
+            message = decryptMessage(
+                dupe_message_bytes, "SM4", "CBC", getKeyOfLength(16))
             if message:
                 # print(decrypt(message))
                 broadcast(message)

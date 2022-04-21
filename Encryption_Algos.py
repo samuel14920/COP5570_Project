@@ -114,6 +114,7 @@ def encryptMessage(encryption, mode, message, key=bytes(16)):
     padder = padding.PKCS7(128).padder()
     padded_data = padder.update(encoded_message)
     padded_data += padder.finalize()
+    # print(padded_data)
     ct = encryptor.update(padded_data) + encryptor.finalize()
 
     return ct
@@ -136,7 +137,36 @@ def decryptMessage(ciphertext, encryption, mode, key=bytes(16)):
         cipher = Cipher(algorithms.AES(key), set_mode)
     decryptor = cipher.decryptor()
     padded_data = decryptor.update(ciphertext) + decryptor.finalize()
+    print("CIPHERTEXT:\n", ciphertext)
+    print("PADDED DATA:\n", padded_data)
     unpadder = padding.PKCS7(128).unpadder()
     data = unpadder.update(padded_data)
+    print("DATA:\n", data)
     message = data + unpadder.finalize()
+    #print("MESSAGE\n", message)
     return message
+
+
+# info = getCipherInfo("AES")
+# set_mode = setEncryptionMode("CBC", "AES", info.get('block_size'))
+# key = getKeyOfLength(16)
+# cipher = Cipher(algorithms.AES(key), set_mode)
+
+# message = "hello world"
+# encoded_message = message.encode()
+
+# encryptor = cipher.encryptor()
+# # print(type(encoded_message))
+# padder = padding.PKCS7(128).padder()
+# padded_data = padder.update(encoded_message)
+# padded_data += padder.finalize()
+# # print(padded_data)
+# ct = encryptor.update(padded_data) + encryptor.finalize()
+
+
+# decryptor = cipher.decryptor()
+# padded_data = decryptor.update(ct) + decryptor.finalize()
+# unpadder = padding.PKCS7(128).unpadder()
+# data = unpadder.update(padded_data)
+# message = data + unpadder.finalize()
+# print(message)

@@ -50,23 +50,27 @@ def write():
             if message.endswith(".txt"):
                 message_file = open(message, encoding="utf8")
                 client.send(message.encode("utf-8"))
+                startEncryption = time.perf_counter_ns()
                 l = message_file.read(bytesReceive)
+
                 while (l):
-                    client.send(l.encode("utf-8"))
+                    encrypted_message = encryptMessage(
+                        "SM4", "CBC", l, getKeyOfLength(16))
+                    print(encrypted_message, "hello")
+                    client.send(encrypted_message)
                     l = message_file.read(bytesReceive)
                 message_file.close()
+                endEncryption = time.perf_counter_ns()
             else:
                 message = username + ': ' + message
                 outstandingMessages.add(message)
-            startEncryption = time.perf_counter_ns()
-            # for i in range(1000):
-            #     encrypted_message = encryptMessage(
-            #         "AES", "CBC", message, getKeyOfLength(16))
-            encrypted_message = encryptMessage(
-                "AES", "CBC", message, getKeyOfLength(16))
-            endEncryption = time.perf_counter_ns()
-            print(endEncryption - startEncryption)
-            client.send(encrypted_message)
+                startEncryption = time.perf_counter_ns()
+                encrypted_message = encryptMessage(
+                    "SM4", "CBC", message, getKeyOfLength(16))
+                print(encrypted_message)
+                endEncryption = time.perf_counter_ns()
+                print(endEncryption - startEncryption)
+                client.send(encrypted_message)
         except socket.timeout:
             pass
         except KeyboardInterrupt:
