@@ -32,6 +32,9 @@ serverHost = '127.0.0.1'
 serverPort = 5555
 bytesReceive = 3145728
 outstandingMessages = set()
+currentCryptFunk = "AES" # "AES" "TripleDES" "Blowfish" "SM4" "ARC4" "DES1"
+currentCryptMode = "ECB" # "ECB" "CBC" "OFB" "CFB" "CTR"  NA
+currentKeyLength = getKeyOfLength(16) # 32  16  Need 8
 # START OF ACTUAL PROGRAM
 
 # Connecting To Server with IPv4 TCP - STREAM
@@ -58,7 +61,7 @@ def write():
 
                 while (l):
                     encrypted_message = encryptMessage(
-                        "SM4", "CBC", l, getKeyOfLength(16))
+                        currentCryptFunk, currentCryptMode, l, currentKeyLength)
                     # print(encrypted_message, "hello")
                     client.send(encrypted_message)
                     l = message_file.read(bytesReceive)
@@ -71,7 +74,7 @@ def write():
                 startEncryption = time.perf_counter_ns()
                 # print(startEncryption)
                 encrypted_message = encryptMessage(
-                    "SM4", "CBC", message, getKeyOfLength(16))
+                    currentCryptFunk, currentCryptMode, message, currentKeyLength)
                 # print(encrypted_message)
                 endEncryption = time.perf_counter_ns()
                 # print(endEncryption)

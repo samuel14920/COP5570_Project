@@ -26,7 +26,9 @@ from Encryption_Algos import *
 serverHost = '127.0.0.1'
 serverPort = 5555
 bytesReceive = 3145728
-
+currentCryptFunk = "AES" # "AES" "TripleDES" "Blowfish" "SM4" "ARC4" "DES1"
+currentCryptMode = "ECB" # "ECB" "CBC" "OFB" "CFB" "CTR" NA
+currentKeyLength = getKeyOfLength(16) # 32  16  Need 8
 # Server binding for serverHost and serverPort with IPv4 TCP - STREAM
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((serverHost, serverPort))
@@ -92,14 +94,14 @@ def handle_user(client):
             # print(l)
             # while (l):
             decrypted_message = decryptMessage(
-                l, "SM4", "CBC", getKeyOfLength(16))
+                l, currentCryptFunk, currentCryptMode, currentKeyLength)
             # l = l.decode("utf-8", 'ignore')
             new_file.write(decrypted_message.decode())
             new_file.close()
         else:
             #decryptMessage(ciphertext, encryption, mode, key=bytes(16))
             message = decryptMessage(
-                dupe_message_bytes, "SM4", "CBC", getKeyOfLength(16))
+                dupe_message_bytes, currentCryptFunk, currentCryptMode, currentKeyLength)
             if message:
                 # print(decrypt(message))
                 broadcast(message)

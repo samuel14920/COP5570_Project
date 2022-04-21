@@ -2,6 +2,7 @@ import socket
 import threading
 import os
 import time
+from desCrypt import desCrypt
 from cryptography.hazmat.primitives.ciphers import (
     Cipher, algorithms, modes
 )
@@ -107,6 +108,8 @@ def encryptMessage(encryption, mode, message, key=bytes(16)):
         cipher = Cipher(algorithms.SM4(key), set_mode)
     elif encryption == "ARC4":
         cipher = Cipher(algorithms.ARC4(key), set_mode)
+    elif encryption == "DES1":
+        cipher = desCrypt(message, key, 0)
     else:  # encryption == "AES"
         cipher = Cipher(algorithms.AES(key), set_mode)
     encryptor = cipher.encryptor()
@@ -133,6 +136,8 @@ def decryptMessage(ciphertext, encryption, mode, key=bytes(16)):
         cipher = Cipher(algorithms.SM4(key), set_mode)
     elif encryption == "ARC4":
         cipher = Cipher(algorithms.ARC4(key), set_mode)
+    elif encryption == "DES1":
+        cipher = desCrypt(message, key, 1)
     else:  # encryption == "AES"
         cipher = Cipher(algorithms.AES(key), set_mode)
     decryptor = cipher.decryptor()
