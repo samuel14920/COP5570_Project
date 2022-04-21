@@ -1,28 +1,3 @@
-ARC4-sam: hello world-197500
-ARC4-sam: hello world-140000
-ARC4-sam: hello world-152500
-ARC4-sam: hello world-162200
-ARC4-sam: hello world-164200
-ARC4-Frankenstein.txt-7546000
-ARC4-Frankenstein.txt-7092200
-ARC4-Frankenstein.txt-7622100
-ARC4-Frankenstein.txt-6809500
-ARC4-Frankenstein.txt-6459200
-ARC4-Dickens.txt-14048000
-ARC4-Dickens.txt-10663300
-ARC4-Dickens.txt-10612100
-ARC4-Dickens.txt-11507500
-ARC4-Dickens.txt-10986200
-ARC4-Joyce.txt-17067300
-ARC4-Joyce.txt-19502100
-ARC4-Joyce.txt-17488000
-ARC4-Joyce.txt-17131500
-ARC4-Joyce.txt-18687000
-ARC4-Dumas.txt-27867400
-ARC4-Dumas.txt-28456300
-ARC4-Dumas.txt-27676700
-ARC4-Dumas.txt-28919900
-ARC4-Dumas.txt-28041200
 AES-CBC-sam: hello world-144100
 AES-CBC-sam: hello world-164300
 AES-CBC-sam: hello world-121300

@@ -1,0 +1,8 @@
+AES-CBC-sam: hi-70167000
+AES-CBC-Frankenstein.txt-9302100
+AES-CBC-Frankenstein.txt-7415700
+AES-CBC-Frankenstein.txt-6869800
+AES-CBC-Frankenstein.txt-6373400
+AES-CBC-Frankenstein.txt-6368100
+AES-CBC-Frankenstein.txt-6673700
+AES-CBC-Frankenstein.txt-6704900
