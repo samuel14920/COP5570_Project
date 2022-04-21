@@ -90,12 +90,11 @@ def handle_user(client):
             new_file = open('newfile.txt', mode='w', encoding="utf8")
             l = client.recv(bytesReceive)
             # print(l)
-            while (l):
-                decrypted_message = decryptMessage(
-                    l, "SM4", "CBC", getKeyOfLength(16))
-                # l = l.decode("utf-8", 'ignore')
-                new_file.write(decrypted_message.decode())
-                l = client.recv(bytesReceive)
+            # while (l):
+            decrypted_message = decryptMessage(
+                l, "SM4", "CBC", getKeyOfLength(16))
+            # l = l.decode("utf-8", 'ignore')
+            new_file.write(decrypted_message.decode())
             new_file.close()
         else:
             #decryptMessage(ciphertext, encryption, mode, key=bytes(16))

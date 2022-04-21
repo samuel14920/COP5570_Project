@@ -1,46 +1,41 @@
+import time
+import os
+import threading
+import socket
 import speech_recognition as s_r
 r = s_r.Recognizer()
 my_mic = s_r.Microphone(device_index=0)
-
-import socket
-import threading
-import os
-import time
 
 
 # Connecting To Server
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(('127.0.0.1', 55555))
 
-def encrypt(encryption, message):
-    #this will be a kind of switch statement for the different encryptions
-    return message
-
-def decrypt(encryption, message):
-    #same for decryptions
-    return message
 
 def speak(message):
     if ':' in message:
-        cmd = 'say ' + message.split(':')[0] + 'say' +  ' '.join(message.split(':')[1:])
+        cmd = 'say ' + message.split(':')[0] + \
+            'say' + ' '.join(message.split(':')[1:])
     else:
         cmd = 'say ' + message
-    os.system(cmd) 
+    os.system(cmd)
+
 
 def write():
     while True:
         time.sleep(1)
         flag = input("choose 'typing' or 'speaking'\n")
-        if (flag == "typeing"):
+        if (flag == "typing"):
             message = input('typing input\n')
         elif flag == "speaking":
             print("speak\n")
             with my_mic as source:
                 r.adjust_for_ambient_noise(source)
                 audio = r.listen(source)
-            message = r.recognize_google(audio) 
+            message = r.recognize_google(audio)
         message = username + ': ' + message
         client.send(message.encode())
+
 
 def receive():
     while True:
@@ -57,8 +52,6 @@ def receive():
             print("Connection Error")
             client.close()
             break
-
-
 
 
 username = input("Select Username: ")

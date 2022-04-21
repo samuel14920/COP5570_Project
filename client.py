@@ -50,6 +50,7 @@ def write():
 
             if message.endswith(".txt"):
                 message_file = open(message, encoding="utf8")
+                message_file.seek(0)
                 client.send(message.encode("utf-8"))
                 startEncryption = time.perf_counter_ns()
                 l = message_file.read(bytesReceive)
@@ -57,11 +58,12 @@ def write():
                 while (l):
                     encrypted_message = encryptMessage(
                         "SM4", "CBC", l, getKeyOfLength(16))
-                    print(encrypted_message, "hello")
+                    # print(encrypted_message, "hello")
                     client.send(encrypted_message)
                     l = message_file.read(bytesReceive)
                 message_file.close()
                 endEncryption = time.perf_counter_ns()
+                print(endEncryption - startEncryption)
             else:
                 message = username + ': ' + message
                 outstandingMessages.add(message)
