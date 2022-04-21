@@ -25,7 +25,7 @@ from Encryption_Algos import *
 
 serverHost = '127.0.0.1'
 serverPort = 5555
-bytesReceive = 524288
+bytesReceive = 3145728
 
 # Server binding for serverHost and serverPort with IPv4 TCP - STREAM
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

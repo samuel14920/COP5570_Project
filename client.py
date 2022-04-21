@@ -30,7 +30,7 @@ from Encryption_Algos import *
 
 serverHost = '127.0.0.1'
 serverPort = 5555
-bytesReceive = 524288
+bytesReceive = 3145728
 outstandingMessages = set()
 # START OF ACTUAL PROGRAM
 
@@ -69,12 +69,12 @@ def write():
                 message = username + ': ' + message
                 outstandingMessages.add(message)
                 startEncryption = time.perf_counter_ns()
-                print(startEncryption)
+                # print(startEncryption)
                 encrypted_message = encryptMessage(
                     "SM4", "CBC", message, getKeyOfLength(16))
                 # print(encrypted_message)
                 endEncryption = time.perf_counter_ns()
-                print(endEncryption)
+                # print(endEncryption)
                 print(endEncryption - startEncryption)
                 client.send(encrypted_message)
         except socket.timeout:
