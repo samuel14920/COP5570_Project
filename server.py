@@ -25,7 +25,7 @@ from Encryption_Algos import *
 
 serverHost = '127.0.0.1'
 serverPort = 5555
-bytesReceive = 2048
+bytesReceive = 524288
 
 # Server binding for serverHost and serverPort with IPv4 TCP - STREAM
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -94,7 +94,7 @@ def handle_user(client):
                 decrypted_message = decryptMessage(
                     l, "SM4", "CBC", getKeyOfLength(16))
                 # l = l.decode("utf-8", 'ignore')
-                new_file.write(decrypted_message)
+                new_file.write(decrypted_message.decode())
                 l = client.recv(bytesReceive)
             new_file.close()
         else:

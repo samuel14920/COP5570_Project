@@ -2,6 +2,7 @@ import socket
 import threading
 import os
 import time
+import pdb
 from cryptography.hazmat.primitives.ciphers import (
     Cipher, algorithms, modes
 )
@@ -28,7 +29,7 @@ from Encryption_Algos import *
 
 serverHost = '127.0.0.1'
 serverPort = 5555
-bytesReceive = 2048
+bytesReceive = 524288
 outstandingMessages = set()
 # START OF ACTUAL PROGRAM
 
